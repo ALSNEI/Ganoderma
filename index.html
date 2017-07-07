@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>灵芝</title>
+	<link rel="stylesheet" href="swiper/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="js/function.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div id="loading"><span>loading...</span></div>
+		<div class="content">
+			<div class="swiper-container swiper-container-horizontal" id="detailswiper">
+		        <div class="swiper-wrapper">
+		            <div class="swiper-slide slideOne">
+		            i
+		            </div>
+		            <div class="swiper-slide slideTwo">
+		            </div>
+		            <div class="swiper-slide slideThree">
+		            </div>
+		            <div class="swiper-slide slideFour">
+		            </div>
+		        </div>
+		        <!-- Add Pagination -->
+		        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+		        	<span class="swiper-pagination-bullet"></span>
+		        	<span class="swiper-pagination-bullet"></span>
+		        	<span class="swiper-pagination-bullet"></span>
+		        	<span class="swiper-pagination-bullet"></span>
+		        </div>
+		    </div>
+		    <div id="register">
+		    	<header>代理等级</header>
+		    	<div class="formstyle">
+		    		<div class="inputwrap">
+		    			<i class="iconfont icon-yonghu"></i>
+		    			<input type="text" placeholder="姓名" class="name">
+		    		</div>
+		    		<div class="inputwrap">
+		    			<i class="iconfont icon-shouji"></i>
+		    			<input type="number" placeholder="电话" class="mobile">
+		    		</div>
+		    		<div class="inputwrap">
+		    			<i class="iconfont icon-yonghu"></i>
+		    			<input type="number" placeholder="身份证" class="idcard">
+		    		</div>
+		    		<div class="inputwrap">
+		    			<i class="iconfont icon-qia"></i>
+		    			<input type="text" placeholder="银行名称" class="bank">
+		    		</div>
+		    		<div class="inputwrap">
+		    			<i class="iconfont icon-qia"></i>
+		    			<input type="number" placeholder="银行卡账号" class="count">
+		    		</div>
+		    		<div class="selectrect" >
+		    			<i class="iconfont icon-dailishangguanli" style="top:.15rem"></i>
+		    			<select class="rect">
+		    				<option value="0">一级代理</option>
+		    				<option value="1">二级代理</option>
+		    				<option value="2">三级代理</option>
+		    			</select>
+		    		</div>
+		    		<div class="inputwrap">
+		    			<i class="iconfont icon-fangwuleixing-"></i>
+		    			<input type="text" placeholder="住址" class="address">
+		    		</div>
+		    		<div class="registerbtn">
+		    			<span class="resetbtn">重置</span>
+		    			<span class="submitbtn">提交</span>
+		    		</div>
+		    	</div>
+		    </div>
+		</div>
+		<div class="footer">
+			<span class="tabone active">产品及代理说明</span>
+			<span class="tabtwo">代理登记</span>
+			<div class="sub">
+				<a href="javascript:void(0);" class="subselect">代理</a>
+				<a href="javascript:void(0);" class="subselect">登记</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/zepto.min.js"></script>
+<script src="swiper/swiper.min.js"></script>
+<script type="text/javascript">
+//加载图片
+$(function(){
+    var impImg = [
+    'img/register.jpg',
+    'img/swiper1.jpg',
+    'img/swiper2.jpg',
+    'img/swiper3.jpg',
+    'img/swiper4.jpg',
+    ]
+
+    preloadimage(impImg);
+
+    function preloadimage(arr){
+        var newimages=[], loadedimages=0;
+        var arr=(typeof arr!="object")? [arr] : arr; 
+        function imageloadpost(){
+            loadedimages++;
+            if (loadedimages<=arr.length){
+               // fnLoad(loadedimages,arr.length);
+                if (loadedimages==arr.length){
+                    fnStart();
+
+                }
+            }
+        }
+        for (var i=0; i<arr.length; i++){
+            newimages[i]=new Image();
+            newimages[i].src=arr[i];
+            newimages[i].onload=function(){
+                imageloadpost();
+            }
+            newimages[i].onerror=function(){
+                imageloadpost();
+            }
+        }
+    }
+    
+        function fnStart(){
+            $('#loading').hide();
+            readyGo();
+        }
+ })
+
+var btnbol = true;
+function readyGo(){
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay : 3000,
+        speed:600,
+        autoplayDisableOnInteraction:false,
+        loop:true
+    });
+	$('.tabone').click(function(){
+		$('#detailswiper').show();
+		$('#register').hide();
+		$(this).addClass('active');
+		$('.tabtwo').removeClass('active');
+		$('.sub').css('display',"block");
+		$('.judge').hide();
+	});
+	$('.tabtwo').click(function(){
+		if($('.tabone').css('display')=='block'){
+			if($('.sub').css('display')=='block'){
+				$('.sub').hide();
+			}else{
+				$('.sub').show();
+			}
+		}
+		$('.subselect').show();
+		$('#detailswiper').hide();
+		$('#register').show();
+		$(this).addClass('active');
+		$('.tabone').removeClass('active');
+	});
+	
+	$('.resetbtn').click(function(){
+		$('.name').val('');
+		$('.mobile').val('');
+		$('.idcard').val('');
+		$('.bank').val('');
+		$('.count').val('');
+		$('.address').val('');
+	});
+	$('.submitbtn').click(function(){
+		if(btnbol){
+			if(!$('.name').val()){
+				alert('请填写姓名!');
+				$('.name').focus();
+				return
+			};
+			if(!$('.mobile').val()){
+				alert('请填写电话号码!');
+				$('.mobile').focus()
+				return
+			};
+			if(!$('.idcard').val()){
+				alert('请填写身份证!');
+				$('.idcard').focus();
+				return
+			};
+			if(!$('.bank').val()){
+				alert('请填写银行名称!');
+				$('.bank').focus()
+				return
+			};
+			if(!$('.count').val()){
+				alert('请填写银行卡账户！');
+				$('.count').focus();
+				return
+			};
+			if(!$('.address').val()){
+				alert('请填写住址!');
+				$('.address').focus()
+				return
+			};
+			$.ajax({  
+		        url: " ",              //请求地址
+		        type: "POST",                       //请求方式
+		        data: { 
+		        	
+		        },
+		        dataType: "json",
+		        cache:true, 
+		        success: function (response, xml) {
+		            alert("提交成功！");
+		            btnbol = false;
+		            $(this).css({
+		            	'background-color':'rgba(255,255,255,.08)'
+		            })
+		        },
+		        fail: function (status) {
+		            alert("注册失败！请重试")
+		        }
+		    });
+		}
+	});
+}	
+</script>
+</html>
